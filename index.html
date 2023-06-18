@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IQ Test</title>
+  <style>
+    body {
+      background-color: #f2f2f2; /* Set a light gray background color */
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333; /* Set the heading color to dark gray */
+    }
+
+    .container {
+      margin-top: 100px; /* Add some spacing from the top */
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50; /* Set the button color to green */
+      color: white;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the IQ Test</h1>
+    <button class="button" onclick="generateIQ()">Generate IQ</button>
+    <p id="iqResult"></p>
+  </div>
+
+  <script>
+    function generateIQ() {
+      var minIQ = 80;
+      var maxIQ = 160;
+      var randomIQ = Math.floor(Math.random() * (maxIQ - minIQ + 1)) + minIQ;
+      document.getElementById("iqResult").textContent = "Your IQ is: " + randomIQ;
+    }
+  </script>
+</body>
+</html>
