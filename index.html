@@ -2,15 +2,10 @@
 <html>
 <head>
   <title>IQ Test</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
   <style>
     body {
       background-color: #f2f2f2; /* Set a light gray background color */
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-
-    h1 {
-      color: #333; /* Set the heading color to dark gray */
     }
 
     .container {
@@ -18,22 +13,28 @@
     }
 
     .button {
-      display: inline-block;
-      padding: 10px 20px;
       background-color: #4CAF50; /* Set the button color to green */
-      color: white;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
+      border-color: #4CAF50;
       border-radius: 4px;
+    }
+
+    #iqResult {
+      font-size: 18px;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Welcome to the IQ Test</h1>
-    <button class="button" onclick="generateIQ()">Generate IQ</button>
-    <p id="iqResult"></p>
+    <h1 class="text-center mb-5">Welcome to the IQ Test</h1>
+    <div class="text-center">
+      <button class="btn btn-primary" onclick="generateIQ()">Generate IQ</button>
+    </div>
+    <p id="iqResult" class="text-center mt-4"></p>
   </div>
 
   <script>
@@ -41,7 +42,12 @@
 
     function generateIQ() {
       if (isTestTaken) {
-        document.getElementById("iqResult").textContent = "You can't take the test again. You have already tested your IQ.";
+        var savedResult = localStorage.getItem("iqResult");
+        if (savedResult) {
+          document.getElementById("iqResult").textContent = "Your saved IQ result is: " + savedResult + ". You can't retake the test.";
+        } else {
+          document.getElementById("iqResult").textContent = "You can't take the test again. You have already tested your IQ.";
+        }
         return;
       }
 
@@ -58,8 +64,18 @@
         iqResultElement.textContent = "Your IQ is: " + randomIQ + ". Bro thinks twice!!.";
       }
 
+      localStorage.setItem("iqResult", randomIQ);
       isTestTaken = true;
     }
+
+    // Retrieve the IQ result from local storage on page load
+    window.addEventListener("load", function() {
+      var savedResult = localStorage.getItem("iqResult");
+      if (savedResult) {
+        document.getElementById("iqResult").textContent = "Your saved IQ result is: " + savedResult + ". You can't retake the test.";
+        isTestTaken = true;
+      }
+    });
   </script>
 </body>
 </html>
