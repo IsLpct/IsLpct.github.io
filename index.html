@@ -37,19 +37,28 @@
   </div>
 
   <script>
+    var isTestTaken = false;
+
     function generateIQ() {
+      if (isTestTaken) {
+        document.getElementById("iqResult").textContent = "You can't take the test again. You have already tested your IQ.";
+        return;
+      }
+
       var minIQ = 1;
       var maxIQ = 160;
       var randomIQ = Math.floor(Math.random() * (maxIQ - minIQ + 1)) + minIQ;
       var iqResultElement = document.getElementById("iqResult");
 
       if (randomIQ >= 1 && randomIQ <= 60) {
-        iqResultElement.textContent = "Your IQ is: " + randomIQ + ". you are welbert.";
+        iqResultElement.textContent = "Your IQ is: " + randomIQ + ". You are Welbert.";
       } else if (randomIQ > 60 && randomIQ <= 100) {
-        iqResultElement.textContent = "Your IQ is: " + randomIQ + ". you are smarter than welbert.";
+        iqResultElement.textContent = "Your IQ is: " + randomIQ + ". You are smarter than Welbert.";
       } else {
-        iqResultElement.textContent = "Your IQ is: " + randomIQ + ". bro you think twice.";
+        iqResultElement.textContent = "Your IQ is: " + randomIQ + ". Bro thinks twice!!.";
       }
+
+      isTestTaken = true;
     }
   </script>
 </body>
