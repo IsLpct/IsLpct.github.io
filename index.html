@@ -38,10 +38,18 @@
 
   <script>
     function generateIQ() {
-      var minIQ = 80;
+      var minIQ = 1;
       var maxIQ = 160;
       var randomIQ = Math.floor(Math.random() * (maxIQ - minIQ + 1)) + minIQ;
-      document.getElementById("iqResult").textContent = "Your IQ is: " + randomIQ;
+      var iqResultElement = document.getElementById("iqResult");
+
+      if (randomIQ >= 1 && randomIQ <= 60) {
+        iqResultElement.textContent = "Your IQ is: " + randomIQ + ". you are welbert.";
+      } else if (randomIQ > 60 && randomIQ <= 100) {
+        iqResultElement.textContent = "Your IQ is: " + randomIQ + ". you are smarter than welbert.";
+      } else {
+        iqResultElement.textContent = "Your IQ is: " + randomIQ + ". bro you think twice.";
+      }
     }
   </script>
 </body>
